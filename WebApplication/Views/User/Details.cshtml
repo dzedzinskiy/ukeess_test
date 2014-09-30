@@ -1,0 +1,237 @@
+﻿@model DAL.Models.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div class="user">
+    <h4>@Model.FirstName  @Model.LastName</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Married)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Married)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sallary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sallary)
+        </dd>
+    </dl>
+    <div class="contacts">
+        
+        @if (@Model.PrimaryContact != null)
+        {
+            <div class="contact">
+                <div class="contact-label">PrimaryContact</div>
+                <dl class="dl-horizontal">
+                
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PrimaryContact.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PrimaryContact.Name)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PrimaryContact.Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PrimaryContact.Email)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PrimaryContact.Phone)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PrimaryContact.Phone)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PrimaryContact.Fax)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PrimaryContact.Fax)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PrimaryContact.Note)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PrimaryContact.Note)
+                    </dd>
+                </dl>
+            </div>
+        }
+        
+        
+        @if (@Model.SecondaryContact != null)
+        {
+            <div class="contact">
+                <div class="contact-label">SecondaryContact</div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SecondaryContact.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SecondaryContact.Name)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SecondaryContact.Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SecondaryContact.Email)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SecondaryContact.Phone)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SecondaryContact.Phone)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SecondaryContact.Fax)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SecondaryContact.Fax)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SecondaryContact.Note)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SecondaryContact.Note)
+                    </dd>
+                </dl>
+            </div>
+        }
+        
+        
+        @if (@Model.AdministrativeContact != null)
+        {
+            <div class="contact">
+                <div class="contact-label">AdministrativeContact</div>
+                <dl class="dl-horizontal">
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AdministrativeContact.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.AdministrativeContact.Name)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AdministrativeContact.Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.AdministrativeContact.Email)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AdministrativeContact.Phone)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.AdministrativeContact.Phone)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AdministrativeContact.Fax)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.AdministrativeContact.Fax)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AdministrativeContact.Note)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.AdministrativeContact.Note)
+                    </dd>
+                </dl>
+            </div>
+        }
+    </div>
+</div>
+<p style="margin-top: 20px">
+    <a href="@Url.Action("Edit", new {id = Model.ID})" class="btn btn-default btn-sm">Edit</a>
+    <a href="@Url.Action("Index")" class="btn btn-default btn-sm">Back to List</a>
+</p>
+
+<style>
+    div.user {
+        -ms-border-radius: 5px;
+        border: 1px solid black;
+        border-radius: 5px;
+        display: inline-block;
+        padding: 10px;
+    }
+
+    div.contacts {
+        -ms-border-radius: 5px;
+        border: 1px solid black;
+        border-radius: 5px;
+        display: inline-block;
+        padding: 10px;
+    }
+
+    .contact-label { display: inline-block; }
+
+    .contact {
+        display: inline-block;
+        vertical-align: top;
+        border: 1px dotted grey;
+        padding: 5px;
+        margin-right: 25px;
+        padding-right: 25px;
+    }
+
+    .contacts dt { width: 50px; }
+
+    .contacts dd { margin-left: 60px; }
+</style>

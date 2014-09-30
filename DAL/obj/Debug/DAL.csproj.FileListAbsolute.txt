@@ -1,0 +1,13 @@
+E:\Projects\workspace\WebApplication\DAL\bin\Debug\DAL.dll.config
+E:\Projects\workspace\WebApplication\DAL\bin\Debug\DAL.dll
+E:\Projects\workspace\WebApplication\DAL\bin\Debug\DAL.pdb
+E:\Projects\workspace\WebApplication\DAL\bin\Debug\EntityFramework.dll
+E:\Projects\workspace\WebApplication\DAL\bin\Debug\EntityFramework.SqlServer.dll
+E:\Projects\workspace\WebApplication\DAL\bin\Debug\EntityFramework.xml
+E:\Projects\workspace\WebApplication\DAL\bin\Debug\EntityFramework.SqlServer.xml
+E:\Projects\workspace\WebApplication\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+E:\Projects\workspace\WebApplication\DAL\obj\Debug\DAL.dll
+E:\Projects\workspace\WebApplication\DAL\obj\Debug\DAL.pdb
+E:\Projects\workspace\WebApplication\DAL\obj\Debug\DAL.Migrations.InitialCreate.resources
+E:\Projects\workspace\WebApplication\DAL\obj\Debug\DAL.csproj.GenerateResource.Cache
+E:\Projects\workspace\WebApplication\DAL\obj\Debug\DAL.Migrations.UserPrimaryContactRequired.resources

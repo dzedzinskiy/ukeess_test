@@ -1,0 +1,248 @@
+﻿@model DAL.Models.User
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div id="user">
+            <div class="form-group">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FirstName, new {@class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FirstName)
+                        @Html.ValidationMessageFor(model => model.FirstName)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LastName, new {@class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.LastName)
+                        @Html.ValidationMessageFor(model => model.LastName)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.BirthDate, new {@class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.BirthDate)
+                        @Html.ValidationMessageFor(model => model.BirthDate)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sex, new {@class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Sex)
+                        @Html.ValidationMessageFor(model => model.Sex)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Married, new {@class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Married)
+                        @Html.ValidationMessageFor(model => model.Married)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sallary, new {@class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Sallary)
+                        @Html.ValidationMessageFor(model => model.Sallary)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="user-contact">
+            @{
+                var contactTypes = new List<SelectListItem>
+                {
+                    new SelectListItem
+                    {
+                        Text = "PrimaryContact",
+                        Value = "PrimaryContact",
+                        Selected = true
+                    },
+                    new SelectListItem
+                    {
+                        Text = "SecondaryContact",
+                        Value = "SecondaryContact"
+                    },
+                    new SelectListItem
+                    {
+                        Text = "AdministrativeContact",
+                        Value = "AdministrativeContact"
+                    }
+                };
+            }
+
+            <div class="form-group">
+                @Html.Label("ContactType", new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.DropDownList("dropdown", contactTypes, new {@id = "contact-type-selector"})
+                </div>
+            </div>
+
+            <div id="contact-edit">
+                <div id="PrimaryContact" class="contact primary">
+                    <h4>Primary contact *</h4>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PrimaryContact.Name, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PrimaryContact.Name)
+                            @Html.ValidationMessageFor(model => model.PrimaryContact.Name)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PrimaryContact.Phone, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PrimaryContact.Phone)
+                            @Html.ValidationMessageFor(model => model.PrimaryContact.Phone)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PrimaryContact.Fax, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PrimaryContact.Fax)
+                            @Html.ValidationMessageFor(model => model.PrimaryContact.Fax)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PrimaryContact.Email, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PrimaryContact.Email)
+                            @Html.ValidationMessageFor(model => model.PrimaryContact.Email)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PrimaryContact.Note, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PrimaryContact.Note)
+                            @Html.ValidationMessageFor(model => model.PrimaryContact.Note)
+                        </div>
+                    </div>
+                </div>
+                <div id="SecondaryContact" class="contact secondary">
+                    <h4>Secondary contact</h4>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SecondaryContact.Name, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SecondaryContact.Name)
+                            @Html.ValidationMessageFor(model => model.SecondaryContact.Name)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SecondaryContact.Phone, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SecondaryContact.Phone)
+                            @Html.ValidationMessageFor(model => model.SecondaryContact.Phone)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SecondaryContact.Fax, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SecondaryContact.Fax)
+                            @Html.ValidationMessageFor(model => model.SecondaryContact.Fax)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SecondaryContact.Email, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SecondaryContact.Email)
+                            @Html.ValidationMessageFor(model => model.SecondaryContact.Email)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SecondaryContact.Note, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SecondaryContact.Note)
+                            @Html.ValidationMessageFor(model => model.SecondaryContact.Note)
+                        </div>
+                    </div>
+                </div>
+                <div id="AdministrativeContact" class="contact administrative">
+                    <h4>Administrative contact</h4>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SecondaryContact.Name, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SecondaryContact.Name)
+                            @Html.ValidationMessageFor(model => model.SecondaryContact.Name)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SecondaryContact.Phone, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SecondaryContact.Phone)
+                            @Html.ValidationMessageFor(model => model.SecondaryContact.Phone)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SecondaryContact.Fax, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SecondaryContact.Fax)
+                            @Html.ValidationMessageFor(model => model.SecondaryContact.Fax)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SecondaryContact.Email, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SecondaryContact.Email)
+                            @Html.ValidationMessageFor(model => model.SecondaryContact.Email)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AdministrativeContact.Note, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.AdministrativeContact.Note)
+                            @Html.ValidationMessageFor(model => model.AdministrativeContact.Note)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input id="submit-user" type="submit" value="Create User" class="btn btn-primary btn-large" />
+            <a href="@Url.Action("Index")" class="btn btn-default btn-large">Back to List</a>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $('#contact-type-selector').on('change', function(e) {
+            $('#contact-edit .contact').hide();
+            $('#' + e.target.value).show();
+        });
+
+        $('#submit-user').on('click', function(e) {
+            e.preventDefault();
+            var primary = $('#PrimaryContact_Name');
+            if (primary.val() === '') {
+                alert('Primary contact is required!');
+            } else {
+                $('form').submit();
+            }
+        });
+
+    </script>
+}

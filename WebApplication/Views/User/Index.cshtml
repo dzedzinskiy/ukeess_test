@@ -1,0 +1,54 @@
+﻿@using DAL.Models
+@model IEnumerable<DAL.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<hr/>
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary btn-sm">Create new</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sallary)
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+    @foreach (User item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sallary)
+            </td>
+            <td class="buttons">
+                <a href="@Url.Action("Edit", new {id = item.ID})" class="btn btn-default btn-sm">Edit</a>
+                <a href="@Url.Action("Details", new {id = item.ID})" class="btn btn-default btn-sm">Details</a>
+                <a href="@Url.Action("Delete", new {id = item.ID})" class="btn btn-default btn-sm">Delete</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<style>
+    .table .buttons {
+        padding-top: 5px;
+    }
+</style>
