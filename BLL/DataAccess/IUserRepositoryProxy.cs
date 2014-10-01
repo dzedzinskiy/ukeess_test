@@ -15,8 +15,6 @@ namespace BLL.DataAccess
         void UpdateUser(User item);
         void DeleteUser(int id);
 
-        IQueryable<User> SearchForUser(Expression<Func<User, bool>> predicate);
-
         void InsertUserContact(int userId, Contact contact);
         void DeleteUserContact(int userId, int contactId, int contactType);
         void UpdateUserContact(Contact contact);

@@ -7,18 +7,23 @@ using Models.Contacts;
 
 namespace DAL.Repositories
 {
-    public interface IUserRepository : IDisposable
+    public interface IUserRepository<TEntity, TKey> : IDisposable where TEntity : class
     {
-        IEnumerable<User> GetAllUsers();
-        User GetUserById(int id);
-        void InsertUser(User item);
-        void UpdateUser(User item);
-        void DeleteUser(int id);
+        void Create(TEntity entity);
+        TEntity GetById(TKey id);
+        void Delete(TEntity entity);
+        void Update(TEntity entity);
+        IQueryable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate, string includes);
 
-        IQueryable<User> SearchForUser(Expression<Func<User, bool>> predicate);
+
+        IEnumerable<User> GetAllUsers();
+        User GetUserWithContactsById(int userId);
+        void DeleteUserWithContacts(int userId);
 
         void InsertUserContact(int userId, Contact contact);
         void DeleteUserContact(int userId, int contactId, int contactType);
         void UpdateUserContact(Contact contact);
+
+        
     }
 }

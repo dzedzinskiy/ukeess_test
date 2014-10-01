@@ -12,3 +12,17 @@ C:\Projects\Workspace\ukeess_test\BLL\obj\Debug\BLL.pdb
 C:\Projects\Workspace\ukeess_test\BLL\bin\Debug\BLL.dll.config
 C:\Projects\Workspace\ukeess_test\BLL\bin\Debug\EntityFramework.SqlServer.dll
 C:\Projects\Workspace\ukeess_test\BLL\bin\Debug\EntityFramework.SqlServer.xml
+E:\Projects\workspace\WebApplication\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+E:\Projects\workspace\WebApplication\BLL\bin\Debug\BLL.dll.config
+E:\Projects\workspace\WebApplication\BLL\bin\Debug\BLL.dll
+E:\Projects\workspace\WebApplication\BLL\bin\Debug\BLL.pdb
+E:\Projects\workspace\WebApplication\BLL\bin\Debug\DAL.dll
+E:\Projects\workspace\WebApplication\BLL\bin\Debug\EntityFramework.dll
+E:\Projects\workspace\WebApplication\BLL\bin\Debug\EntityFramework.SqlServer.dll
+E:\Projects\workspace\WebApplication\BLL\bin\Debug\Models.dll
+E:\Projects\workspace\WebApplication\BLL\bin\Debug\DAL.pdb
+E:\Projects\workspace\WebApplication\BLL\bin\Debug\Models.pdb
+E:\Projects\workspace\WebApplication\BLL\bin\Debug\EntityFramework.xml
+E:\Projects\workspace\WebApplication\BLL\bin\Debug\EntityFramework.SqlServer.xml
+E:\Projects\workspace\WebApplication\BLL\obj\Debug\BLL.dll
+E:\Projects\workspace\WebApplication\BLL\obj\Debug\BLL.pdb

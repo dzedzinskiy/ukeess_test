@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace DAL.Repositories
 {
@@ -41,6 +43,16 @@ namespace DAL.Repositories
             if (entity == null) throw new ArgumentNullException("entity");
             DbContext.Set<TEntity>().Attach(entity);
             DbContext.Entry(entity).State = EntityState.Modified;
+        }
+
+        public IQueryable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate, string includes)
+        {
+            IQueryable<TEntity> data = _dbContext.Set<TEntity>();
+            if (predicate != null)
+            {
+                data = data.Where(predicate);
+            }
+            return String.IsNullOrEmpty(includes) ? data : includes.Split(',').Aggregate(data, (current, field) => current.Include(field));
         }
     }
 }

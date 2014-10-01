@@ -8,3 +8,13 @@ C:\Projects\Workspace\ukeess_test\Models\bin\Debug\EntityFramework.dll
 C:\Projects\Workspace\ukeess_test\Models\bin\Debug\EntityFramework.SqlServer.dll
 C:\Projects\Workspace\ukeess_test\Models\bin\Debug\EntityFramework.xml
 C:\Projects\Workspace\ukeess_test\Models\bin\Debug\EntityFramework.SqlServer.xml
+E:\Projects\workspace\WebApplication\Models\bin\Debug\Models.dll.config
+E:\Projects\workspace\WebApplication\Models\bin\Debug\Models.dll
+E:\Projects\workspace\WebApplication\Models\bin\Debug\Models.pdb
+E:\Projects\workspace\WebApplication\Models\bin\Debug\EntityFramework.dll
+E:\Projects\workspace\WebApplication\Models\bin\Debug\EntityFramework.SqlServer.dll
+E:\Projects\workspace\WebApplication\Models\bin\Debug\EntityFramework.xml
+E:\Projects\workspace\WebApplication\Models\bin\Debug\EntityFramework.SqlServer.xml
+E:\Projects\workspace\WebApplication\Models\obj\Debug\Models.dll
+E:\Projects\workspace\WebApplication\Models\obj\Debug\Models.pdb
+E:\Projects\workspace\WebApplication\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache

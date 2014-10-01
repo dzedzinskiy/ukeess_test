@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
 using DAL.Repositories;
 using Models;
 using Models.Contacts;
@@ -23,7 +20,7 @@ namespace BLL.DataAccess
 
         public User GetUserById(int id)
         {
-            return repository.GetUserById(id);
+            return repository.GetUserWithContactsById(id);
         }
 
         public IEnumerable<User> GetAllUsers()
@@ -49,11 +46,6 @@ namespace BLL.DataAccess
         public void InsertUserContact(int userId, Contact contact)
         {
             repository.InsertUserContact(userId, contact);
-        }
-
-        public IQueryable<User> SearchForUser(Expression<Func<User, bool>> predicate)
-        {
-            return repository.SearchForUser(predicate);
         }
 
         public void DeleteUserContact(int userId, int contactId, int contactType)
