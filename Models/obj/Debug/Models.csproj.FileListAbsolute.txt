@@ -1,0 +1,10 @@
+C:\Projects\Workspace\ukeess_test\Models\bin\Debug\Models.dll
+C:\Projects\Workspace\ukeess_test\Models\bin\Debug\Models.pdb
+C:\Projects\Workspace\ukeess_test\Models\obj\Debug\Models.dll
+C:\Projects\Workspace\ukeess_test\Models\obj\Debug\Models.pdb
+C:\Projects\Workspace\ukeess_test\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+C:\Projects\Workspace\ukeess_test\Models\bin\Debug\Models.dll.config
+C:\Projects\Workspace\ukeess_test\Models\bin\Debug\EntityFramework.dll
+C:\Projects\Workspace\ukeess_test\Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Projects\Workspace\ukeess_test\Models\bin\Debug\EntityFramework.xml
+C:\Projects\Workspace\ukeess_test\Models\bin\Debug\EntityFramework.SqlServer.xml

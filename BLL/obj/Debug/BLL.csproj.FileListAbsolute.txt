@@ -1,0 +1,14 @@
+C:\Projects\Workspace\ukeess_test\BLL\bin\Debug\BLL.dll
+C:\Projects\Workspace\ukeess_test\BLL\bin\Debug\BLL.pdb
+C:\Projects\Workspace\ukeess_test\BLL\bin\Debug\DAL.dll
+C:\Projects\Workspace\ukeess_test\BLL\bin\Debug\Models.dll
+C:\Projects\Workspace\ukeess_test\BLL\bin\Debug\EntityFramework.dll
+C:\Projects\Workspace\ukeess_test\BLL\bin\Debug\DAL.pdb
+C:\Projects\Workspace\ukeess_test\BLL\bin\Debug\Models.pdb
+C:\Projects\Workspace\ukeess_test\BLL\bin\Debug\EntityFramework.xml
+C:\Projects\Workspace\ukeess_test\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Projects\Workspace\ukeess_test\BLL\obj\Debug\BLL.dll
+C:\Projects\Workspace\ukeess_test\BLL\obj\Debug\BLL.pdb
+C:\Projects\Workspace\ukeess_test\BLL\bin\Debug\BLL.dll.config
+C:\Projects\Workspace\ukeess_test\BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Projects\Workspace\ukeess_test\BLL\bin\Debug\EntityFramework.SqlServer.xml
