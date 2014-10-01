@@ -1,25 +1,38 @@
 ﻿using System.Net;
 using System.Web.Mvc;
 using System.Web.WebPages;
-using DAL;
-using DAL.Models;
-using DAL.Models.Contacts;
+using BLL.DataAccess;
+using BLL.UnitOfWork;
+using Models;
+using Models.Contacts;
+using Models.DataContexts;
+using Newtonsoft.Json;
 
 namespace WebApplication.Controllers
 {
     public class UserController : Controller
     {
+        private IAppContext appContext;
         private readonly IUnitOfWork unitOfWork;
 
-        public UserController(IUnitOfWork unitOfWork)
+        private readonly IUserRepositoryProxy repository;
+
+        //public UserController(IUserRepositoryProxy repository, IUnitOfWork unitOfWork)
+        //{
+        //    this.repository = repository;
+        //    this.unitOfWork = unitOfWork;
+        //}
+        public UserController()
         {
-            this.unitOfWork = unitOfWork;
+            this.appContext = new MyAppContext();
+            this.repository = new UserRepositoryProxy(appContext);
+            this.unitOfWork = new UnitOfWork(appContext);
         }
 
         // GET: /User/
         public ActionResult Index()
         {
-            return View(unitOfWork.UserRepository.GetAllUsers());
+            return View(repository.GetAllUsers());
         }
 
         // GET: /User/Details/5
@@ -30,7 +43,7 @@ namespace WebApplication.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            User user = unitOfWork.UserRepository.GetUserById(id.Value);
+            User user = repository.GetUserById(id.Value);
 
             if (user == null)
             {
@@ -57,21 +70,24 @@ namespace WebApplication.Controllers
                     "ID,FirstName,LastName,BirthDate,Sex,Married,Sallary,PrimaryContact,SecondaryContact,AdministrativeContact"
                 )] User user)
         {
-            //Required PrimaryContact data
-            if (user.PrimaryContact.Name.IsEmpty() || user.PrimaryContact.Phone.IsEmpty())
+            using (unitOfWork)
             {
-                return RedirectToAction("Create");
+                if (user.PrimaryContact.Name.IsEmpty() || user.PrimaryContact.Phone.IsEmpty())
+                {
+                    return RedirectToAction("Create");
+                }
+                if (user.SecondaryContact != null && user.SecondaryContact.Name.IsEmpty())
+                {
+                    user.SecondaryContact = null;
+                }
+                if (user.AdministrativeContact != null && user.AdministrativeContact.Name.IsEmpty())
+                {
+                    user.AdministrativeContact = null;
+                }
+                repository.InsertUser(user);
+                unitOfWork.SaveChanges();
             }
-            if (user.SecondaryContact != null && user.SecondaryContact.Name.IsEmpty())
-            {
-                user.SecondaryContact = null;
-            }
-            if (user.AdministrativeContact != null && user.AdministrativeContact.Name.IsEmpty())
-            {
-                user.AdministrativeContact = null;
-            }
-            unitOfWork.UserRepository.InsertUser(user);
-            unitOfWork.Save();
+            
             return RedirectToAction("Index");
         }
 
@@ -82,7 +98,7 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = unitOfWork.UserRepository.GetUserById(id.Value);
+            User user = repository.GetUserById(id.Value);
             if (user == null)
             {
                 return HttpNotFound();
@@ -96,15 +112,15 @@ namespace WebApplication.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(
-            [Bind(
-                Include =
-                    "ID,FirstName,LastName,BirthDate,Sex,Married,Sallary,PrimaryContact,SecondaryContact,AdministrativeContact"
-                )] User user)
+            [Bind(Include = "ID,FirstName,LastName,BirthDate,Sex,Married,Sallary,PrimaryContact,SecondaryContact,AdministrativeContact")] User user)
         {
             if (ModelState.IsValid)
             {
-                unitOfWork.UserRepository.UpdateUser(user);
-                unitOfWork.Save();
+                using (unitOfWork)
+                {
+                    repository.UpdateUser(user);
+                    unitOfWork.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -117,7 +133,7 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = unitOfWork.UserRepository.GetUserById(id.Value);
+            User user = repository.GetUserById(id.Value);
             if (user == null)
             {
                 return HttpNotFound();
@@ -130,16 +146,22 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            unitOfWork.UserRepository.DeleteUser(id);
-            unitOfWork.Save();
+            using (unitOfWork)
+            {
+                repository.DeleteUser(id);
+                unitOfWork.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
 
         [HttpPost]
         public string DeleteUserContact(int userId, int contactId, int contactType)
         {
-            unitOfWork.UserRepository.DeleteUserContact(userId, contactId, contactType);
-            unitOfWork.Save();
+            using (unitOfWork)
+            {
+                repository.DeleteUserContact(userId, contactId, contactType);
+                unitOfWork.SaveChanges();
+            }
             return "Success";
         }
 
@@ -148,8 +170,8 @@ namespace WebApplication.Controllers
             int contactType)
         {
             contact.ContactType = (ContactTypes) contactType;
-            unitOfWork.UserRepository.InsertUserContact(userId, contact);
-            unitOfWork.Save();
+            repository.InsertUserContact(userId, contact);
+            unitOfWork.SaveChanges();
             return "Success";
         }
 
@@ -158,15 +180,18 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                unitOfWork.UserRepository.UpdateUserContact(contact);
-                unitOfWork.Save();
+                using (unitOfWork)
+                {
+                    repository.UpdateUserContact(contact);
+                    unitOfWork.SaveChanges(); 
+                }
             }
             return "Success";
         }
 
         protected override void Dispose(bool disposing)
         {
-            unitOfWork.Dispose();
+            repository.Dispose();
             base.Dispose(disposing);
         }
     }

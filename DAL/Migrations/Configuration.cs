@@ -1,17 +1,17 @@
 using System.Data.Entity.Migrations;
-using DAL.DataContexts;
+using Models.DataContexts;
 
 namespace DAL.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<AppContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<MyAppContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "DAL.DataContexts.AppContext";
+            ContextKey = "DAL.DataContexts.MyAppContext";
         }
 
-        protected override void Seed(AppContext context)
+        protected override void Seed(MyAppContext context)
         {
             //  This method will be called after migrating to the latest version.
 

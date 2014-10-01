@@ -1,46 +1,46 @@
 ﻿using System;
 using System.Data.Entity;
-using System.Linq;
-using System.Linq.Expressions;
 
 namespace DAL.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<TEntity, TKey> where TEntity : class
     {
-        protected DbSet<T> DbSet;
+        private readonly DbContext _dbContext;
 
-        public Repository(DbContext dataContext)
+        public Repository(DbContext dbContext)
         {
-            DbSet = dataContext.Set<T>();
+            if (dbContext == null) throw new ArgumentNullException("dbContext");
+            _dbContext = dbContext;
         }
 
-        #region IRepository<T> Members
-
-        public void Insert(T entity)
+        protected DbContext DbContext
         {
-            DbSet.Add(entity);
+            get { return _dbContext; }
         }
 
-        public void Delete(T entity)
+        public void Create(TEntity entity)
         {
-            DbSet.Remove(entity);
+            if (entity == null) throw new ArgumentNullException("entity");
+            DbContext.Set<TEntity>().Add(entity);
         }
 
-        public IQueryable<T> SearchFor(Expression<Func<T, bool>> predicate)
+        public TEntity GetById(TKey id)
         {
-            return DbSet.Where(predicate);
+            return _dbContext.Set<TEntity>().Find(id);
         }
 
-        public IQueryable<T> GetAll()
+        public void Delete(TEntity entity)
         {
-            return DbSet;
+            if (entity == null) throw new ArgumentNullException("entity");
+            DbContext.Set<TEntity>().Attach(entity);
+            DbContext.Set<TEntity>().Remove(entity);
         }
 
-        public T GetById(int id)
+        public void Update(TEntity entity)
         {
-            return DbSet.Find(id);
+            if (entity == null) throw new ArgumentNullException("entity");
+            DbContext.Set<TEntity>().Attach(entity);
+            DbContext.Entry(entity).State = EntityState.Modified;
         }
-
-        #endregion
     }
 }

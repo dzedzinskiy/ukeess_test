@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using DAL.Models;
-using DAL.Models.Contacts;
+using System.Linq;
+using System.Linq.Expressions;
+using Models;
+using Models.Contacts;
 
 namespace DAL.Repositories
 {
@@ -13,7 +15,11 @@ namespace DAL.Repositories
         void UpdateUser(User item);
         void DeleteUser(int id);
 
+        IQueryable<User> SearchForUser(Expression<Func<User, bool>> predicate);
+
         void InsertUserContact(int userId, Contact contact);
+        void DeleteUserContact(int userId, int contactId, int contactType);
+        void UpdateUserContact(Contact contact);
 
         void Save();
     }

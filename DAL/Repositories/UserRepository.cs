@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using DAL.DataContexts;
-using DAL.Models;
-using DAL.Models.Contacts;
+using Models;
+using Models.Contacts;
+using Models.DataContexts;
 
 namespace DAL.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : Repository<User, string>, IUserRepository
     {
-        internal IAppContext context;
-        private bool disposed;
+        private IAppContext context { get; set; }
 
-        public UserRepository(IAppContext context)
+        public UserRepository(IAppContext context) : base((DbContext) context)
         {
             this.context = context;
         }
+
+        private bool disposed;
 
         public User GetUserById(int id)
         {
@@ -39,7 +40,8 @@ namespace DAL.Repositories
 
         public void InsertUser(User user)
         {
-            context.Users.Add(user);
+            base.Create(user);
+            /*context.Users.Add(user);*/
         }
 
         public void UpdateUser(User user)
@@ -87,17 +89,6 @@ namespace DAL.Repositories
             context.Entry(user).State = EntityState.Modified;
         }
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
         public IQueryable<User> SearchForUser(Expression<Func<User, bool>> predicate)
         {
             return context.Users
@@ -139,6 +130,17 @@ namespace DAL.Repositories
         {
             context.Contacts.Attach(contact);
             context.Entry(contact).State = EntityState.Modified;
+        }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool disposing)

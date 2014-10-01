@@ -1,8 +1,9 @@
 using System;
 using System.Web;
-using DAL;
-using DAL.DataContexts;
+using BLL.DataAccess;
+using BLL.UnitOfWork;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Models.DataContexts;
 using Ninject;
 using Ninject.Web.Common;
 using WebActivatorEx;
@@ -49,8 +50,9 @@ namespace WebApplication
 
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-            kernel.Bind<IAppContext>().To<AppContext>();
+            //kernel.Bind<IAppContext>().To<MyAppContext>().InRequestScope();
+            //kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+            //kernel.Bind<IUserRepositoryProxy>().To<UserRepositoryProxy>();
         }
     }
 }

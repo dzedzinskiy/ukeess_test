@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BLL">
+      <HintPath>..\WebApplication\Bin\BLL.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -39,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,8 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContexts\AppContext.cs" />
-    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Migrations\201409301758019_InitialCreate.cs" />
     <Compile Include="Migrations\201409301758019_InitialCreate.Designer.cs">
       <DependentUpon>201409301758019_InitialCreate.cs</DependentUpon>
@@ -56,21 +58,17 @@
     <Compile Include="Migrations\201409301853369_UserPrimaryContactRequired.Designer.cs">
       <DependentUpon>201409301853369_UserPrimaryContactRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410011402388_BirthDate.cs" />
+    <Compile Include="Migrations\201410011402388_BirthDate.Designer.cs">
+      <DependentUpon>201410011402388_BirthDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Contacts\AdministrativeContact.cs" />
-    <Compile Include="Models\Contacts\Contact.cs" />
-    <Compile Include="Models\Contacts\IContact.cs" />
-    <Compile Include="Models\Contacts\PrimaryContact.cs" />
-    <Compile Include="Models\Contacts\SecondaryContact.cs" />
-    <Compile Include="Factories\ContactFactory.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
-    <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -83,6 +81,15 @@
     <EmbeddedResource Include="Migrations\201409301853369_UserPrimaryContactRequired.resx">
       <DependentUpon>201409301853369_UserPrimaryContactRequired.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410011402388_BirthDate.resx">
+      <DependentUpon>201410011402388_BirthDate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{e980ecb8-c3d4-4968-a803-369136cb9e1a}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
