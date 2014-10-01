@@ -1,5 +1,6 @@
 using System;
 using System.Web;
+using BLL;
 using BLL.DataAccess;
 using BLL.UnitOfWork;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
@@ -50,9 +51,10 @@ namespace WebApplication
 
         private static void RegisterServices(IKernel kernel)
         {
-            //kernel.Bind<IAppContext>().To<MyAppContext>().InRequestScope();
-            //kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-            //kernel.Bind<IUserRepositoryProxy>().To<UserRepositoryProxy>();
+            kernel.Bind<IAppContext>().To<MyAppContext>().InRequestScope();
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+            kernel.Bind<IUserRepositoryProxy>().To<UserRepositoryProxy>();
+            kernel.Bind<AppContextCreator>().To<ConcreateAppContextCreator>();
         }
     }
 }

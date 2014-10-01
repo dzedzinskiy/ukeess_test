@@ -20,7 +20,5 @@ namespace DAL.Repositories
         void InsertUserContact(int userId, Contact contact);
         void DeleteUserContact(int userId, int contactId, int contactType);
         void UpdateUserContact(Contact contact);
-
-        void Save();
     }
 }

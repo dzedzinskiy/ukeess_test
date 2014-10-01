@@ -6,28 +6,27 @@ using BLL.UnitOfWork;
 using Models;
 using Models.Contacts;
 using Models.DataContexts;
-using Newtonsoft.Json;
 
 namespace WebApplication.Controllers
 {
     public class UserController : Controller
     {
-        private IAppContext appContext;
         private readonly IUnitOfWork unitOfWork;
-
+        
         private readonly IUserRepositoryProxy repository;
 
-        //public UserController(IUserRepositoryProxy repository, IUnitOfWork unitOfWork)
-        //{
-        //    this.repository = repository;
-        //    this.unitOfWork = unitOfWork;
-        //}
-        public UserController()
+        public UserController(IUserRepositoryProxy repository, IUnitOfWork unitOfWork)
         {
-            this.appContext = new MyAppContext();
-            this.repository = new UserRepositoryProxy(appContext);
-            this.unitOfWork = new UnitOfWork(appContext);
+            this.repository = repository;
+            this.unitOfWork = unitOfWork;
         }
+
+        //public UserController()
+        //{
+        //    this.appContext = new MyAppContext();
+        //    this.repository = new UserRepositoryProxy(appContext);
+        //    this.unitOfWork = new UnitOfWork(appContext);
+        //}
 
         // GET: /User/
         public ActionResult Index()

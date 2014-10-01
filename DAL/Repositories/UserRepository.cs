@@ -11,14 +11,14 @@ namespace DAL.Repositories
 {
     public class UserRepository : Repository<User, string>, IUserRepository
     {
+        private bool disposed;
+
         private IAppContext context { get; set; }
 
         public UserRepository(IAppContext context) : base((DbContext) context)
         {
             this.context = context;
         }
-
-        private bool disposed;
 
         public User GetUserById(int id)
         {
@@ -132,10 +132,6 @@ namespace DAL.Repositories
             context.Entry(contact).State = EntityState.Modified;
         }
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
 
         public void Dispose()
         {
